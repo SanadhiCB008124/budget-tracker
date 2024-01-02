@@ -1,42 +1,245 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { firestore } from '../../firebase';
+
+import Paper from '@mui/material/Paper';
+
+import { styled } from '@mui/material/styles';
+import { useAuth } from '../../AuthContext';
+import Transactions from './Transactions';
+import TextField from '@mui/material/TextField';  // Import TextField
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+
+
+
+interface Transactions {
+  amount: string;
+  description: string;
+  category: string;
+}
+
+type Expenses = {
+  id: string;
+  category: string;
+  amount: string;
+  description: string;
+};
+
+type Income = {
+  id: string;
+  category: string;
+  amount: string;
+  description: string;
+};
+
+interface Category {
+  name: string;
+}
+
+type Budget = {
+  id: string;
+  category: string;
+  amount: string;
+  description: string;
+};
 
 const Dashboard: React.FC = () => {
+  const { user } = useAuth();
+  const [categories, setCategories] = useState<string[]>([]);
+  const [expenseFormData, setExpenseFormData] = useState({
+    category: '',
+    amount: '',
+    description: '',
+  });
+  const [incomeFormData, setIncomeFormData] = useState({
+    category: '',
+    amount: '',
+    description: '',
+  });
+  const [expenses, setExpenses] = useState<Expenses[]>([]);
+  const [budgets, setBudgets] = useState<Budget[]>([]);
+  const [income, setIncome] = useState<Income[]>([]);
+  const [transactions, setTransactions] = useState<Transactions[]>([]);
+  const [newExpenses, setNewExpenses] = useState('');
+  const [newIncome, setNewIncome] = useState('');
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(firestore, 'budget'));
+        const categoryData: string[] = [];
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          categoryData.push(data.category);
+        });
+
+        setCategories(categoryData);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+
+  const handleExpenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setExpenseFormData({
+      ...expenseFormData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleIncomeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIncomeFormData({
+      ...incomeFormData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  
+
+  
+  const handleExpenseSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const transactionData = {
+      category: expenseFormData.category,
+      amount: expenseFormData.amount,
+      description: expenseFormData.description,
+    };
+  
+    try {
+      if (transactionData.category.trim() !== '' && transactionData.amount.trim() !== '') {
+        const docRef = await addDoc(collection(firestore, 'expenses'), transactionData);
+        console.log('Expense document added with ID: ', docRef.id);
+        setExpenses([...expenses, { ...transactionData, id: docRef.id }]);
+      } else {
+        console.error('Invalid expense data');
+      }
+    } catch (error) {
+      console.error('Error adding expense document:', error);
+    }
+  
+    // Update local state or perform other actions as needed
+    setTransactions([...transactions, transactionData]);
+    setExpenseFormData({
+      category: '',
+      amount: '',
+      description: '',
+    });
+  };
+  
+  const handleIncomeSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const transactionData = {
+      category: incomeFormData.category,
+      amount: incomeFormData.amount,
+      description: incomeFormData.description,
+    };
+  
+    try {
+      if (transactionData.category.trim() !== '' && transactionData.amount.trim() !== '') {
+        const docRef = await addDoc(collection(firestore, 'income'), transactionData);
+        console.log('Income document added with ID: ', docRef.id);
+        setIncome([...income, { ...transactionData, id: docRef.id }]);
+      } else {
+        console.error('Invalid income data');
+      }
+    } catch (error) {
+      console.error('Error adding income document:', error);
+    }
+  
+    // Update local state or perform other actions as needed
+    setTransactions([...transactions, transactionData]);
+    setIncomeFormData({
+      category: '',
+      amount: '',
+      description: '',
+    });
+  };
+  
+  
+  
     return (
-        <div  className="flex flex-row">
-        <div className="w-full bg-primary h-full flex flex-row flex-wrap gap-6  justify-center p-10 overflow-hidden text-white">
-        <NavLink to="/budget" >
-        <a className="transform hover:scale-105 transition duration-300 shadow-xl  rounded-lg  " href="#">
-                <div className="p-5 text-primary-500 rounded bg-purple-300 ">
-                    <div className="mt-3  text-base font-bold text-center leading-8">Your Budget</div>
-                    <div className="flex justify-center">
-                        <div className="mt-3 text-3xl leading-8 text-white">LKR 6,200.34</div>
-                    </div>
-                </div>
-            </a>                       
-        </NavLink>
-            
-
-            <a className="transform hover:scale-105 transition duration-300 shadow-xl  rounded-lg " href="#">
-                <div className="p-5 text-primary-500 rounded bg-purple-300 ">
-                    <div className="mt-3  text-base font-bold text-center leading-8">Total Expenses</div>
-                    <div className="flex justify-center">
-                        <div className="mt-3 text-3xl leading-8 text-white">LKR  6,200.34</div>
-                    </div>
-                </div>
-            </a>
-
-            <a className="transform hover:scale-105 transition duration-300 shadow-xl  rounded-lg  " href="#">
-                <div className="p-5 text-primary-500 rounded bg-purple-300">
-                    <div className="mt-3  text-base font-bold text-center leading-8">Total Income</div>
-                    <div className="flex justify-center">
-                        <div className="mt-3 text-3xl leading-8 text-white">LKR 6,200.34</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        </div>
-    );
+      <>
+        <h1>Add Expense</h1>
+        <form onSubmit={handleExpenseSubmit}>
+          <TextField
+            select
+            label="Category"
+            name="category"
+            value={expenseFormData.category}
+            onChange={handleExpenseChange}
+            fullWidth
+            required
+          >
+            {categories.map((category) => (
+              <MenuItem key={category} value={category}>
+                {category}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            label="Amount"
+            name="amount"
+            value={expenseFormData.amount}
+            onChange={handleExpenseChange}
+            fullWidth
+            required
+          />
+          <TextField
+            label="Description"
+            name="description"
+            value={expenseFormData.description}
+            onChange={handleExpenseChange}
+            fullWidth
+            required
+          />
+          <Button type="submit" variant="contained" color="primary">
+            Add Transaction
+          </Button>
+        </form>
+  
+        <h1>Add Income</h1>
+        <form onSubmit={handleIncomeSubmit}>
+          <TextField
+            select
+            label="Category"
+            name="category"
+            value={incomeFormData.category}
+            onChange={handleIncomeChange}
+            fullWidth
+            required
+          >
+             {categories.map((category) => (
+    <MenuItem key={category} value={category}>
+      {category}
+    </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            label="Amount"
+            name="amount"
+            value={incomeFormData.amount}
+            onChange={handleIncomeChange}
+            fullWidth
+            required
+          />
+          <TextField
+            label="Description"
+            name="description"
+            value={incomeFormData.description}
+            onChange={handleIncomeChange}
+            fullWidth
+            required
+          />
+          <Button type="submit" variant="contained" color="primary">
+            Add Transaction
+          </Button>
+        </form>
+    </>
+  );
 };
 
 export default Dashboard;

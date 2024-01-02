@@ -5,7 +5,7 @@ import Transactions from "./Transactions.tsx";
 
 const Home = () => {
   return (
-    <div>
+    <div >
 
         <Dashboard/>
         <Transactions/>

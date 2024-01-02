@@ -23,7 +23,7 @@ export default function Navbar() {
                     <>
                         <li
 
-                            className="font-poppins text-primary-500 hover:text-white  font-small cursor-pointer text-[16px]  space-x-4"
+                            className="font-poppins text-white bg-black hover:text-black  m-3 p-3 hover:bg-purple-300 rounded   font-small cursor-pointer text-[16px]  space-x-4"
 
                         >
                             <NavLink to="/home" >
@@ -34,7 +34,7 @@ export default function Navbar() {
                         </li>
                         <li
 
-                            className="font-poppins active:text-white text-primary-500 hover:text-white active:text-white  font-small cursor-pointer text-[16px]  space-x-4"
+                            className="font-poppins hover:text-black text-white bg-black m-3 p-3 hover:bg-purple-300 rounded  active:text-white  font-small cursor-pointer text-[16px]  space-x-4"
 
                         >
                             <NavLink to="/profile" >
@@ -45,7 +45,7 @@ export default function Navbar() {
                         </li>
                         <li
 
-                            className="font-poppins active:text-white text-primary-500 hover:text-white active:text-white  font-small cursor-pointer text-[16px]  space-x-4"
+                            className="font-poppins  hover:text-black text-white bg-black m-3 p-3 hover:bg-purple-300 rounded  active:text-white  font-small cursor-pointer text-[16px]  space-x-4"
 
                         >
                             <NavLink to="/aboutUs" >
@@ -58,7 +58,7 @@ export default function Navbar() {
 
 
 
-                        <li className="font-poppins text-primary-500 hover:text-white  font-small cursor-pointer text-[16px]
+                        <li className="font-poppins  hover:text-black text-white bg-black m-3 p-3 hover:bg-purple-300 rounded  font-small cursor-pointer text-[16px]
                                 ">
                             <button onClick={logout}>
                                 logout

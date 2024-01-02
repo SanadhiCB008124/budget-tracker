@@ -1,62 +1,92 @@
 import React from "react";
+import food from "../../assets/food.svg";
+import entertainment from "../../assets/entertainment.svg";
+import shop from "../../assets/shopping.svg";
 
 
 const Transactions: React.FC = () => {
+
+
+    const Image={
+        width:"40px",
+        height:"40px",
+        borderRadius:"50%",
+
+    }
+
+
     return (
 
         <div
-            className=" w-full bg-primary h-full  flex-auto items-center justify-center p-10 overflow-hidden text-black "
+            className=" w-full bg-primary flex-auto items-center justify-center p-10 overflow-hidden text-black "
         >
-
-
-            <div className='w-full'>
-                <h2 className="text-primary-500">Recent Transactions</h2>
+              <h1 className="text-primary-500 font-mono font-size[300px] ">Recent Transactions</h1>
+        <div className='w-full'>
+              
                 <ul role="list" className="divide-ymt-10">
 
-                        <li  className="flex justify-between gap-x-6 py-5">
-                            <div className="flex min-w-0 gap-x-4">
-                                <div className="min-w-0 flex-auto">
-                                     <p className="text-sm font-semibold leading-6 text-black">
-                                        Food
-                                    </p>
-                                    <p> <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2f5da7"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7 17L17 7M17 7H8M17 7V16" stroke="#2f5da7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></p>
-                                </div>
-                            </div>
-                            <div className="shrink-0 sm:flex sm:flex-col sm:items-end">
-                                <p className="text-sm leading-6 text-black">LKR 500.00</p>
-
-                            </div>
-
-                        </li>
-
-                    <li  className="flex justify-between gap-x-6 py-5">
+                <li  className="flex shadow-xl rounded mt-5 p-10 justify-between gap-x-6 py-5">
                         <div className="flex min-w-0 gap-x-4">
-                            <div className="min-w-0 flex-auto">
-                                <p className="text-sm font-semibold leading-6 text-black">
-                                    Uber 
-                                </p>
-                                <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#2f5da7"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="arrow-down-left"> <g> <polyline data-name="Right" fill="none" id="Right-2" points="5.3 11.6 5.3 18.7 12.4 18.7" stroke="#2f5da7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline> <line fill="none" stroke="#2f5da7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="18.7" x2="6.9" y1="5.3" y2="17.1"></line> </g> </g> </g> </g></svg>
+                            <div className="min-w-0 flex flex-row space-x-2">
+                               
+                                    <div className="flex flex-left">
+                                        <img src={shop}style={Image} alt="Food" />
+                                    </div>
+                                    <div>
+                                    <p className="text-sm font-semibold leading-6 text-black">
+                                            Christmas Shopping
+                                    </p>
+                                    <p className="text-sm leading-6 text-black font-bold">LKR 1000.00</p>
+
+                                    </div>
+                                  
+  
                             </div>
                         </div>
-                        <div className="shrink-0 sm:flex sm:flex-col sm:items-end">
-                            <p className="text-sm leading-6 text-red-400">LKR 1000.00</p>
-
-                        </div>
+                       
 
                     </li>
-                    <li  className="flex justify-between gap-x-6 py-5">
+
+                    <li  className="flex shadow-xl rounded mt-5 p-10 justify-between gap-x-6 py-5">
                         <div className="flex min-w-0 gap-x-4">
-                            <div className="min-w-0 flex-auto">
-                                <p className="text-sm font-semibold leading-6 text-black">
-                                    Shopping
-                                </p>
-                                <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#2f5da7"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="arrow-down-left"> <g> <polyline data-name="Right" fill="none" id="Right-2" points="5.3 11.6 5.3 18.7 12.4 18.7" stroke="#2f5da7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline> <line fill="none" stroke="#2f5da7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="18.7" x2="6.9" y1="5.3" y2="17.1"></line> </g> </g> </g> </g></svg>
+                            <div className="min-w-0 flex flex-row space-x-2">
+                               
+                                    <div className="flex flex-left">
+                                        <img src={food}style={Image} alt="Food" />
+                                    </div>
+                                    <div>
+                                    <p className="text-sm font-semibold leading-6 text-black">
+                                            Dinner
+                                    </p>
+                                    <p className="text-sm leading-6 text-black font-bold">LKR 1000.00</p>
+
+                                    </div>
+                                  
+  
                             </div>
                         </div>
-                        <div className="shrink-0 sm:flex sm:flex-col sm:items-end">
-                            <p className="text-sm leading-6 text-red-400">LKR 15,000.00</p>
+                       
 
+                    </li>
+                    <li  className="flex shadow-xl rounded mt-5 p-10 justify-between gap-x-6 py-5">
+                        <div className="flex min-w-0 gap-x-4">
+                            <div className="min-w-0 flex flex-row space-x-2">
+                               
+                                    <div className="flex flex-left">
+                                        <img src={entertainment}style={Image} alt="Food" />
+                                    </div>
+                                    <div>
+                                    <p className="text-sm font-semibold leading-6 text-black">
+                                           Watched Wonka at the Cinema
+                                    </p>
+                                    <p className="text-sm leading-6 text-black font-bold">LKR 1000.00</p>
+
+                                    </div>
+                                  
+  
+                            </div>
                         </div>
+                       
 
                     </li>
 
