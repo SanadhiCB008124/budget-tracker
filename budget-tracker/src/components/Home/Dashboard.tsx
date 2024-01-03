@@ -1,245 +1,87 @@
-import React, { useEffect, useState } from 'react';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../../firebase';
+import { NavLink } from 'react-router-dom';
 
-import Paper from '@mui/material/Paper';
-
-import { styled } from '@mui/material/styles';
-import { useAuth } from '../../AuthContext';
-import Transactions from './Transactions';
-import TextField from '@mui/material/TextField';  // Import TextField
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
-
-
-
-interface Transactions {
-  amount: string;
-  description: string;
-  category: string;
-}
-
-type Expenses = {
-  id: string;
-  category: string;
-  amount: string;
-  description: string;
-};
-
-type Income = {
-  id: string;
-  category: string;
-  amount: string;
-  description: string;
-};
-
-interface Category {
-  name: string;
-}
-
-type Budget = {
-  id: string;
-  category: string;
-  amount: string;
-  description: string;
-};
 
 const Dashboard: React.FC = () => {
-  const { user } = useAuth();
-  const [categories, setCategories] = useState<string[]>([]);
-  const [expenseFormData, setExpenseFormData] = useState({
-    category: '',
-    amount: '',
-    description: '',
-  });
-  const [incomeFormData, setIncomeFormData] = useState({
-    category: '',
-    amount: '',
-    description: '',
-  });
-  const [expenses, setExpenses] = useState<Expenses[]>([]);
-  const [budgets, setBudgets] = useState<Budget[]>([]);
-  const [income, setIncome] = useState<Income[]>([]);
-  const [transactions, setTransactions] = useState<Transactions[]>([]);
-  const [newExpenses, setNewExpenses] = useState('');
-  const [newIncome, setNewIncome] = useState('');
 
+  const [totalIncome, setTotalIncome] = useState<number>(0);
+  const [totalExpenses, setTotalExpenses] = useState<number>(0);
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchIncome = async () => {
       try {
-        const querySnapshot = await getDocs(collection(firestore, 'budget'));
-        const categoryData: string[] = [];
+        const querySnapshot = await getDocs(collection(firestore, 'income'));
+        let total = 0;
 
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          categoryData.push(data.category);
+          total += data.amount;
         });
 
-        setCategories(categoryData);
+        setTotalIncome(total);
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error('Error fetching income:', error);
       }
     };
 
-    fetchCategories();
+    fetchIncome();
   }, []);
 
+  useEffect(()=>{
+    const fetchExpenses=async()=>{
+      try {
+        const querySnapshot=await getDocs(collection(firestore, 'expenses'));
+        let total=0;
 
-  const handleExpenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setExpenseFormData({
-      ...expenseFormData,
-      [e.target.name]: e.target.value,
-    });
-  };
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          total += data.amount;
+        });
 
-  const handleIncomeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIncomeFormData({
-      ...incomeFormData,
-      [e.target.name]: e.target.value,
-    });
-  };
-  
-
-  
-  const handleExpenseSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const transactionData = {
-      category: expenseFormData.category,
-      amount: expenseFormData.amount,
-      description: expenseFormData.description,
-    };
-  
-    try {
-      if (transactionData.category.trim() !== '' && transactionData.amount.trim() !== '') {
-        const docRef = await addDoc(collection(firestore, 'expenses'), transactionData);
-        console.log('Expense document added with ID: ', docRef.id);
-        setExpenses([...expenses, { ...transactionData, id: docRef.id }]);
-      } else {
-        console.error('Invalid expense data');
+        setTotalExpenses(total);
+        
+      } catch (error) {
+        console.error('Error fetching expenses:', error);
+        
       }
-    } catch (error) {
-      console.error('Error adding expense document:', error);
-    }
-  
-    // Update local state or perform other actions as needed
-    setTransactions([...transactions, transactionData]);
-    setExpenseFormData({
-      category: '',
-      amount: '',
-      description: '',
-    });
-  };
-  
-  const handleIncomeSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const transactionData = {
-      category: incomeFormData.category,
-      amount: incomeFormData.amount,
-      description: incomeFormData.description,
     };
+    fetchExpenses();
+  },[]);
+
+  return (
+
+
+<div className='flex flex-row flex-wrap  justify-center items-center  ' >
+<div className='bg-red-500 p-9 border-2 rounded text-black'>Budget</div>
+
+<NavLink to="/income">
+<div className='bg-red-500 p-9 border-2 rounded text-black' >Income
+<p>{totalIncome}</p>
+</div>
+</NavLink>
+
+
+<NavLink to="/expenses">
+  <div className='bg-red-500 p-9 border-2 rounded text-black' >
+    Expenses
+    <p>{totalExpenses}</p>
+  </div>
+</NavLink>
+
+
+<div  className='flex flex-row flex-wrap  justify-end mr-10  ' >
+  <NavLink to="/budget">
+  <button className='bg-yellow-500 circle '>
+     <p>+</p>
+  </button>
+  </NavLink>
   
-    try {
-      if (transactionData.category.trim() !== '' && transactionData.amount.trim() !== '') {
-        const docRef = await addDoc(collection(firestore, 'income'), transactionData);
-        console.log('Income document added with ID: ', docRef.id);
-        setIncome([...income, { ...transactionData, id: docRef.id }]);
-      } else {
-        console.error('Invalid income data');
-      }
-    } catch (error) {
-      console.error('Error adding income document:', error);
-    }
-  
-    // Update local state or perform other actions as needed
-    setTransactions([...transactions, transactionData]);
-    setIncomeFormData({
-      category: '',
-      amount: '',
-      description: '',
-    });
-  };
-  
-  
-  
-    return (
-      <>
-        <h1>Add Expense</h1>
-        <form onSubmit={handleExpenseSubmit}>
-          <TextField
-            select
-            label="Category"
-            name="category"
-            value={expenseFormData.category}
-            onChange={handleExpenseChange}
-            fullWidth
-            required
-          >
-            {categories.map((category) => (
-              <MenuItem key={category} value={category}>
-                {category}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            label="Amount"
-            name="amount"
-            value={expenseFormData.amount}
-            onChange={handleExpenseChange}
-            fullWidth
-            required
-          />
-          <TextField
-            label="Description"
-            name="description"
-            value={expenseFormData.description}
-            onChange={handleExpenseChange}
-            fullWidth
-            required
-          />
-          <Button type="submit" variant="contained" color="primary">
-            Add Transaction
-          </Button>
-        </form>
-  
-        <h1>Add Income</h1>
-        <form onSubmit={handleIncomeSubmit}>
-          <TextField
-            select
-            label="Category"
-            name="category"
-            value={incomeFormData.category}
-            onChange={handleIncomeChange}
-            fullWidth
-            required
-          >
-             {categories.map((category) => (
-    <MenuItem key={category} value={category}>
-      {category}
-    </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            label="Amount"
-            name="amount"
-            value={incomeFormData.amount}
-            onChange={handleIncomeChange}
-            fullWidth
-            required
-          />
-          <TextField
-            label="Description"
-            name="description"
-            value={incomeFormData.description}
-            onChange={handleIncomeChange}
-            fullWidth
-            required
-          />
-          <Button type="submit" variant="contained" color="primary">
-            Add Transaction
-          </Button>
-        </form>
-    </>
+</div>
+</div>
   );
-};
+  
+};  
 
 export default Dashboard;

@@ -153,12 +153,21 @@
 }
 
 .circle{
+
   border-radius: 50%;
   background-color: #000;
   color: white;
   height: 40px;
   width: 40px;
-  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+ 
+}
+
+.circle p{
+  font-size: 29px;
+  text-align: center;
+
+  color: #000;
+
 }
 .circle:focus {
   text-decoration: none;
@@ -169,11 +178,6 @@
 }
 
 .circle:active {
-  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+ 
   outline: 0;
-}
-
-.circle:not([disabled]):active {
-  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
-  transform: translate(2px, 2px);
 }

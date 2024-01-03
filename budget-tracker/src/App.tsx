@@ -22,6 +22,11 @@ import SuccessMessage from "./components/SuccessMessage.tsx";
 import { useAuth } from './AuthContext.tsx';
 import AboutUs from "./components/About.tsx";
 import Budget from './components/Budget.tsx';
+import Income from './components/Income.tsx';
+import Expenses from './components/Expenses.tsx';
+
+
+
 function App() {
     const { user } = useAuth();
 
@@ -58,6 +63,8 @@ function App() {
                         <Route path="/buy" element={<Buy />} />
                         <Route path="/get" element={<Get/>} />
                         <Route path="/budget" element={<Budget/>} />
+                        <Route path="/income" element={<Income/>} />
+                        <Route path="/expenses" element={<Expenses/>} />
                     
                         <Route path="/createWallet" element={<CreateWallet/>} />
                         <Route path="/camera" element={<Camera/>} />
