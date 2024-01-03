@@ -54,8 +54,7 @@ interface Category {
 type Budget = {
   id: string;
   category: string;
-  amount: number;
-  description: string;
+  
 };
 
 const Budget: React.FC = () => {
@@ -86,19 +85,22 @@ const Budget: React.FC = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const querySnapshot = await getDocs(collection(firestore, 'budget'));
+        const querySnapshot = await getDocs(collection(firestore, 'category'));
         const categoryData: string[] = [];
-
+    
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          categoryData.push(data.category);
+          console.log('Category data:', data); // Log the data object
+          // Assuming the field name is 'name', update this based on your Firestore schema
+          categoryData.push(data.name);
         });
-
+    
         setCategories(categoryData);
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
     };
+    
 
     fetchCategories();
   }, []);
@@ -109,8 +111,9 @@ const Budget: React.FC = () => {
       setCategories([...categories, newCategoryObj.name]);
       setNewCategory('');
       try {
-        const docRef = await addDoc(collection(firestore, 'budget'), newCategoryObj);
+        const docRef = await addDoc(collection(firestore, 'category'), newCategoryObj);
         console.log('Category document added with ID: ', docRef.id);
+        handleClose1();
       } catch (error) {
         console.error('Error adding category document:', error);
       }

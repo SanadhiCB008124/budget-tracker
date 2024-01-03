@@ -54,7 +54,11 @@ const Dashboard: React.FC = () => {
 
 
 <div className='flex flex-row flex-wrap  justify-center items-center  ' >
-<div className='bg-red-500 p-9 border-2 rounded text-black'>Budget</div>
+
+  <NavLink to="/setBudget">
+  <div className='bg-red-500 p-9 border-2 rounded text-black'>Budget</div>
+
+  </NavLink>
 
 <NavLink to="/income">
 <div className='bg-red-500 p-9 border-2 rounded text-black' >Income
