@@ -23,15 +23,16 @@ Welcome to the Budget Tracking App! This application is designed to simplify and
    
 ## Installation
 1. Clone the repository:
-   ```bash
+ ```bash
    git clone https://github.com/SanadhiCB008124/budget-tracker.git
-   ```
+ ```
+
 2. Install dependencies:
  ```bash
  composer install && npm install && npm run dev
  ```
 
-6. Run the build:
+3. Run the build:
  ```bash
  npm run dev
   ```
