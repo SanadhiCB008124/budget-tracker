@@ -1,5 +1,5 @@
 #  Budget Tracking App
-
+Welcome to the Budget Tracking App! This React TypeScript application uses Firebase for seamless and secure financial management.
 
 ## Table of Contents
 
@@ -9,6 +9,7 @@
 - [Technologies used](#technologies-used)
 - [Features of "Budget-pal"](#features-of-budget-pal)
 - [License](#license)
+
 
 ## Introduction
 
