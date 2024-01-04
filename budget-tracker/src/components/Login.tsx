@@ -3,10 +3,7 @@ import coin from "/src/assets/logo.png";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {Link, useNavigate} from "react-router-dom";
 import { auth } from "../firebase";
-import bgImg from "../assets/splash4.jpg"
-import styles from "../style.tsx";
 
-import react from '@vitejs/plugin-react';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");

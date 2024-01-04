@@ -1,11 +1,9 @@
 import React, {useState} from "react";
-
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import  coin from "/src/assets/logo.png"
 import {Link, useNavigate} from "react-router-dom";
-import bgImg from "../assets/splash4.jpg"
-import styles from "../style.tsx";
+
 
 const CreateWallet: React.FC = () => {
   const [email, setEmail] = useState("");
