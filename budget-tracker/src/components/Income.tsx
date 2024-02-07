@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs,deleteDoc,updateDoc, doc, Firestore, getDoc } from 'firebase/firestore';
 import { firestore } from '../firebase';
 import { getFirestore } from 'firebase/firestore';
-import { set } from 'firebase/database';
 
 type Income = {
   id: string;

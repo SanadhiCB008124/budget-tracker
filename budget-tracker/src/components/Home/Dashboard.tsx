@@ -53,36 +53,28 @@ const Dashboard: React.FC = () => {
   return (
 
 
-<div className='flex flex-row flex-wrap  justify-center items-center  ' >
+<div className='flex flex-row justify-center gap-4 m-10'>
 
-  <NavLink to="/setBudget">
-  <div className='bg-red-500 p-9 border-2 rounded text-black'>Budget</div>
+<NavLink to="/setBudget">
+  <div className='bg-black p-9 border-2 rounded-xl  text-white text-[20px] '>Budget</div>
 
   </NavLink>
 
 <NavLink to="/income">
-<div className='bg-red-500 p-9 border-2 rounded text-black' >Income
-<p>{totalIncome}</p>
+<div className='bg-black p-9 border-2 rounded-xl  text-white text-[20px]' >Income
+<p> LKR {totalIncome}</p>
 </div>
 </NavLink>
 
 
 <NavLink to="/expenses">
-  <div className='bg-red-500 p-9 border-2 rounded text-black' >
+  <div className='bg-black p-9 border-2 rounded-xl  text-white text-[20px]' >
     Expenses
     <p>{totalExpenses}</p>
   </div>
 </NavLink>
 
 
-<div  className='flex flex-row flex-wrap  justify-end mr-10  ' >
-  <NavLink to="/budget">
-  <button className='bg-yellow-500 circle '>
-     <p>+</p>
-  </button>
-  </NavLink>
-  
-</div>
 </div>
   );
   

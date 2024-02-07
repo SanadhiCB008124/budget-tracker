@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import coin from "/src/assets/logo.png";
+import login from "/src/assets/login.jpg";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {Link, useNavigate} from "react-router-dom";
 import { auth } from "../firebase";
@@ -14,10 +15,10 @@ const Login: React.FC = () => {
      const showWelcomeNotification = () => {
          if ('serviceWorker' in navigator && 'PushManager' in window) {
             navigator.serviceWorker.ready.then((registration) => {
-                const title = "Welcome to Zenith Pay";
+                const title = "You have successfully logged into budget-tracker ";
                 const options = {
                     body: "You are now logged in.",
-                 icon:coin, // Replace with your icon path
+                 icon:coin, 
                 };
 
                 registration.showNotification(title, options);
@@ -44,21 +45,22 @@ const Login: React.FC = () => {
 
 
   return (
-    <div>
-    <div className="min-h-screen grid bg-primary">
-      <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0">
+    <div className="min-h-screen flex  ">
+      <div
+          className="sm:w-1/2 bg-cover"
+          style={{
+        
+            backgroundRepeat: "no-repeat",
+            backgroundImage: `url(${login})`,
+        
+          }}
+        ></div>
 
-      
-        <div className="w-full sm:w-1/2 bg-green-200 h-full flex-auto items-center justify-center p-10 overflow-hidden text-white bg-no-repeat bg-cover">
-          
-           
-              
-        </div>
-
-     
-        <div className="hidden sm:block sm:w-1/2 bg-white  h-full bg-cover">
-        <form className="p-10">
-        <h4 className="mb-4 heading text-black text-center">Log In to Budget-Tracker !</h4>
+    
+    
+        <form className="p-10 sm:w-1/2  mt-20  bg-white">
+        <h4 className="mb-4 heading text-black text-center">
+          Log In to Budget-Tracker !</h4>
              {error &&(
             <div className="mb-4 text-red-500 text center"> {error}</div>
              )}
@@ -114,13 +116,7 @@ const Login: React.FC = () => {
 
                                   </form>
                                   </div>
-    </div>
-  </div>
-</div>
-    
-
-
-
+ 
 
 
   );

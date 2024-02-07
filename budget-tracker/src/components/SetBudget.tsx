@@ -7,7 +7,6 @@ import {
   updateDoc,
   doc,
   deleteDoc,
-  
   getDoc,
 } from 'firebase/firestore';
 import { firestore } from '../firebase';
@@ -74,8 +73,7 @@ const SetBudget = () => {
       const budgetDoc = await getDoc(budgetRef);
 
       if (budgetDoc.exists()) {
-        const data = budgetDoc.data() as Budget;
-
+      
         // Assuming you have a way to get the updated amount (newAmount) and date (newDate)
         const updatedBudget: Budget = {
           id: id,

@@ -14,10 +14,10 @@ export default function Navbar() {
     const { user , logout } = useAuth();
 
     return (
-        <nav className="w-full flex py-6  justify-between space-x-10 items-center navbar">
-            <img src={logo} alt="BitWallet" className="w-[39px] h-[39px] rounded-full " />
+        <nav className="w-full h-2/3 mt-10 flex py-6   justify-between space-x-10 items-center bg-black navbar">
+            <img src={logo} alt="BitWallet" className="w-[39px] h-[39px] ml-10 rounded-full " />
 
-            <ul className="list-none sm:flex hidden justify-end items-center flex-1 space-x-4">
+            <ul className="list-none sm:flex hidden justify-end items-center flex-1 mr-10 space-x-4">
 
                 { user ?(
                     <>

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getFirestore, Firestore } from 'firebase/firestore';
 import { firestore } from '../firebase';
-import { set } from 'firebase/database';
 
 type Expenses = {
     id: string;
@@ -138,8 +137,6 @@ const Expenses = () => {
       console.error('Error editing Expense:', error);
     }
   };
-
-
 
   return (
     <div>
