@@ -53,7 +53,9 @@ const CreateWallet: React.FC = () => {
       
         <div className="sm:w-1/2 p-10 mt-20  bg-white ">
           <h4 className="mb-4 heading text-black text-center">
-            Welcome to Budget-Tracker !
+            Welcome to 
+            <br />
+            Budget-Tracker !
           </h4>
           <form onClick={handleRegister}>
             <div className="mb-4 flex flex-col">

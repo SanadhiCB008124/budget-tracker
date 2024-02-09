@@ -105,7 +105,7 @@ export default function Navbar() {
                 <div
                     className={`${
                         !toggle ? "hidden" : "flex"
-                    } p-6 bg-black bg-gradient-to-r from-black to-gray-800 absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
+                    } p-6 text-white bg-black bg-gradient-to-r  from-black to-gray-800 absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
                 >
                     <ul className="list-none flex justify-end items-start flex-1 flex-col m-3">
 
@@ -114,7 +114,7 @@ export default function Navbar() {
                             <>
                                 <li
 
-                                    className="font-poppins text-primary-500 hover:text-white font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
+                                    className="font-poppins  font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
                               "
                                 >
                                     <NavLink to="/home" >
@@ -125,7 +125,7 @@ export default function Navbar() {
                                 </li>
                                 <li
 
-                                    className="font-poppins  text-primary-500 hover:text-white font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
+                                    className="font-poppins  font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
                               "
                                 >
                                     <NavLink to="/profile" >
@@ -136,7 +136,7 @@ export default function Navbar() {
                                 </li>
                                 <li
 
-                                    className="font-poppins  text-primary-500 hover:text-white font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
+                                    className="font-poppins   font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
                               "
                                 >
                                     <NavLink to="/aboutUs" >
@@ -152,7 +152,7 @@ export default function Navbar() {
 
 
 
-                                <li className="font-poppins text-primary-500 hover:text-white font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
+                                <li className="font-poppins  font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
                               ">
                                     <button onClick={logout}>
                                         logout
@@ -168,11 +168,11 @@ export default function Navbar() {
 
 
 
-                                <li  className="font-poppins text-primary-500 font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
+                                <li  className="font-poppins  font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
                               "><NavLink to="/createWallet" >
                                     <label>Register</label>
                                 </NavLink></li>
-                                <li className="font-poppins text-primary-500 font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
+                                <li className="font-poppins  font-medium cursor-pointer text-[16px] pr-4 pb-4 ml-0
                               "><NavLink to="/" >
                                     <label>Login</label>
                                 </NavLink>

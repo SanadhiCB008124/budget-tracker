@@ -323,9 +323,13 @@ const Budget: React.FC = () => {
         </div>
       </div>
 
-      <div>
-        <button className='button-50 ml-10 mb-10' onClick={handleOpen1}>Add a Category</button>
-        <Modal
+      
+</div>
+<div className='flex flex-row flex-wrap justify-end p-5'>
+  <button onClick={handleOpen1}>
+  <svg width="37px" height="37px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M12 4V20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+  </button>
+  <Modal
           open={open1}
           onClose={handleClose1}
           aria-labelledby="modal-modal-title"
@@ -350,25 +354,24 @@ const Budget: React.FC = () => {
             </div>
           </Box>
         </Modal>
-      </div>
-      
+
 </div>
 
 <React.Fragment>
-  <div>
-    <div className=''>
+  
+    <div className='flex flex-row flex-wrap  justify-center'>
       {categories.map((category) => (
-        <div key={category.id} className='p-4 m-2 bg-white border-2 w-1/6 border-orange-500 text-black flex flex-row flex-wrap rounded-md relative'>
-          <button onClick={() => deleteCategory(category.id)} className='absolute top-0 right-0 m-2'>
-          <svg width="27px" height="27px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#e91c1c"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.30958 3.54424C7.06741 2.56989 8.23263 2 9.46699 2H20.9997C21.8359 2 22.6103 2.37473 23.1614 2.99465C23.709 3.61073 23.9997 4.42358 23.9997 5.25V18.75C23.9997 19.5764 23.709 20.3893 23.1614 21.0054C22.6103 21.6253 21.8359 22 20.9997 22H9.46699C8.23263 22 7.06741 21.4301 6.30958 20.4558L0.687897 13.2279C0.126171 12.5057 0.126169 11.4943 0.687897 10.7721L6.30958 3.54424ZM10.2498 7.04289C10.6403 6.65237 11.2734 6.65237 11.664 7.04289L14.4924 9.87132L17.3208 7.04289C17.7113 6.65237 18.3445 6.65237 18.735 7.04289L19.4421 7.75C19.8327 8.14052 19.8327 8.77369 19.4421 9.16421L16.6137 11.9926L19.4421 14.8211C19.8327 15.2116 19.8327 15.8448 19.4421 16.2353L18.735 16.9424C18.3445 17.3329 17.7113 17.3329 17.3208 16.9424L14.4924 14.114L11.664 16.9424C11.2734 17.3329 10.6403 17.3329 10.2498 16.9424L9.54265 16.2353C9.15212 15.8448 9.15212 15.2116 9.54265 14.8211L12.3711 11.9926L9.54265 9.16421C9.15212 8.77369 9.15212 8.14052 9.54265 7.75L10.2498 7.04289Z" fill="#e91c1c"></path> </g></svg>
+        <div key={category.id} className='p-4 m-2 bg-white border-2 border-orange-500 text-black rounded-md relative'>
+          <button onClick={() => deleteCategory(category.id)} className='relative top-0 right-0 '>
+          <svg width="20px"  height="20px" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"></path></g></svg>          
           </button>
-          <div>
-            <h1 className='w-full justify-start '>{category.name}</h1>
-          </div>
+         
+            <h1 className='w-full  '>{category.name}</h1>
+       
         </div>
       ))}
     </div>
-  </div>
+  
 </React.Fragment>
 
     </>

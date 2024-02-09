@@ -2,7 +2,6 @@ import React from "react";
 import food from "../../assets/food.svg";
 import entertainment from "../../assets/entertainment.svg";
 import shop from "../../assets/shopping.svg";
-import { NavLink } from "react-router-dom";
 
 
 const Transactions: React.FC = () => {
@@ -21,11 +20,7 @@ const Transactions: React.FC = () => {
         <div
             className=" w-full bg-primary flex-auto items-center justify-center p-10 overflow-hidden text-black "
         >
-            <NavLink to="/budget">
-  <button className='bg-yellow-500 circle '>
-     <p>+</p>
-  </button>
-  </NavLink>
+            
               <h1 className="text-primary-500 font-mono font-size[300px] ">Recent Transactions</h1>
         <div className='w-full'>
               

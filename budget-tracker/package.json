@@ -12,17 +12,20 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@firebase/firestore": "^4.2.0",
     "@headlessui/react": "^1.7.17",
-    "@mui/material": "^5.14.10",
+    "@mui/material": "^5.15.9",
     "@mui/styled-engine-sc": "^5.14.10",
+    "@mui/x-date-pickers": "^6.19.3",
     "big-integer": "^1.6.52",
+    "dayjs": "^1.11.10",
     "firebase": "^10.4.0",
     "html5-qrcode": "^2.3.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1",
     "react-qr-scanner": "^1.0.0-alpha.11",
     "react-router-dom": "^6.16.0",
     "styled-components": "^5.3.11"
@@ -30,6 +33,7 @@
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/react-modal": "^3.16.3",
     "@types/react-qr-reader": "^2.1.5",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
